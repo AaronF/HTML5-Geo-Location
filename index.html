@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="js/location.js"></script>
+    <title>Geo Test</title>
+    <style>
+        body {
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+            font-weight: 300;
+        }
+        h3 {
+            margin: 20px 0 0 0;
+        }
+        p {
+            margin:0;
+            font-size: 10.5pt;
+        }
+        ul {
+            margin:0;
+            padding:0;
+        }
+        #location li {
+            list-style: none;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #e1e1e1;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <h3>Example ID's:</h3>
+    <p>Pubs: 4bf58dd8d48988d11b941735</p>
+    <p>Food: 4d4b7105d754a06374d81259</p>
+    <p>List: <a href="https://developer.foursquare.com/categorytree">https://developer.foursquare.com/categorytree</a>
+    <br><br>
+    <h3>Get location and close venues:</h3>
+    <label for="catid">Category ID: </label><input type="text" name="catid" id="catid" placeholder="Category ID" value="4bf58dd8d48988d11b941735"><br>
+    <label for="radius">Radius: </label><input type="text" name="radius" id="radius" placeholder="Radius" value="1500"><br>
+	<a href="javascript:;" onclick="getLocation()">Get Location</a>
+    <ul id="location">
+
+    </ul>
+</body>
+</html>
