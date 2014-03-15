@@ -1,27 +1,41 @@
-function getLocation() {
-	if(navigator.geolocation){
-		navigator.geolocation.getCurrentPosition(showPosition)
+var foursq_client_id = "YOURCLIENTID";
+var foursq_client_secret = "YOURCLIENTSECRET";
 
+function getLocation() {
+	$("#location").html("Loading...");
+	//check to make sure that the location API is supported
+	if(navigator.geolocation){
+		//get the users current location and execute the next function (showposition)
+		navigator.geolocation.getCurrentPosition(showPosition)
 	} else {
-		alert("Location Unknown");
+		alert("Location unavailable");
 	}
 }
 
 function showPosition(position){
-	var latitude = position.coords.latitude;
-	var longitude = position.coords.longitude;
+	if(position){
+		console.log(position);
 
-	var catid = document.getElementById("catid").value;
-	var radius = document.getElementById("radius").value;
+		//these two values are sent from the previous function (navigator.geolocation.getCurrentPosition(showPosition))
+		var latitude = position.coords.latitude;
+		var longitude = position.coords.longitude;
 
-	//swap out these details below fir your FourSquare app details
-	string = "client_id=YOURCLIENTID&client_secret=YOURCLIENTSECRET="+latitude+","+longitude+"&v=20130815&limit=20&categoryId="+catid+"&radius="+radius;
-	url = "ba-simple-proxy.php?url=https://api.foursquare.com/v2/venues/search?"+encodeURIComponent(string);
-	console.log(url);
+		var catid = document.getElementById("catid").value; //gets the category ID from the input box
+		var radius = document.getElementById("radius").value; //gets the radius value from the input box
 
-	$.getJSON(url, function(data){
-		$.each(data.contents.response.venues, function(){
-			$("#location").append("<li><strong>Name</strong>: "+this.name+"<br><strong>Distance: </strong>"+this.location.distance+"m</li>");
+		//swap out these details below for your FourSquare app details
+		string = "client_id="+foursq_client_id+"&client_secret="+foursq_client_secret+"&ll="+latitude+","+longitude+"&v=20130815&limit=20&categoryId="+catid+"&radius="+radius;
+
+		url = "proxy.php?url=https://api.foursquare.com/v2/venues/search?"+encodeURIComponent(string);
+		
+		console.log(url);
+
+		$.getJSON(url, function(data){
+			$("#location").html("");
+			$.each(data.contents.response.venues, function(){
+				$("#location").append("<li><strong>Name</strong>: "+this.name+"<br><strong>Distance: </strong>"+this.location.distance+"m</li>");
+			});
 		});
-	});
+	}
+	
 }
