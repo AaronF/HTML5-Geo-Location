@@ -1,3 +1,4 @@
+//swap out these details below for your FourSquare app detail
 var foursq_client_id = "YOURCLIENTID";
 var foursq_client_secret = "YOURCLIENTSECRET";
 
@@ -23,19 +24,26 @@ function showPosition(position){
 		var catid = document.getElementById("catid").value; //gets the category ID from the input box
 		var radius = document.getElementById("radius").value; //gets the radius value from the input box
 
-		//swap out these details below for your FourSquare app details
-		string = "client_id="+foursq_client_id+"&client_secret="+foursq_client_secret+"&ll="+latitude+","+longitude+"&v=20130815&limit=20&categoryId="+catid+"&radius="+radius;
 
-		url = "proxy.php?url=https://api.foursquare.com/v2/venues/search?"+encodeURIComponent(string);
-		
-		console.log(url);
+		if(foursq_client_id == "YOURCLIENTID" || foursq_client_secret == "YOURCLIENTSECRET"){
+			alert("Please register your app");
+		} else {
 
-		$.getJSON(url, function(data){
-			$("#location").html("");
-			$.each(data.contents.response.venues, function(){
-				$("#location").append("<li><strong>Name</strong>: "+this.name+"<br><strong>Distance: </strong>"+this.location.distance+"m</li>");
+			string = "client_id="+foursq_client_id+"&client_secret="+foursq_client_secret+"&ll="+latitude+","+longitude+"&v=20130815&limit=20&categoryId="+catid+"&radius="+radius;
+
+			url = "proxy.php?url=https://api.foursquare.com/v2/venues/search?"+encodeURIComponent(string);
+			
+			console.log(url);
+
+			$.getJSON(url, function(data){
+				$("#location").html("");
+				$.each(data.contents.response.venues, function(){
+					$("#location").append("<li><strong>Name</strong>: "+this.name+"<br><strong>Distance: </strong>"+this.location.distance+"m</li>");
+				});
 			});
-		});
+
+		}
+		
 	}
 	
 }
