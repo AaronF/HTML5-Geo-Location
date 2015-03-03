@@ -4,7 +4,7 @@ Just a test project of some HTML5 geo location and integration with the Foursqua
 
 **Important:**
 
-Register you app at [http://developer.foursquare.com](http://developer.foursquare.com) and note the client ID and the client secret.
+Register your app at [http://developer.foursquare.com](http://developer.foursquare.com) and note the client ID and the client secret.
 
 Replace the two variables at the top of the location.js file (in the JS folder) with your client ID and client secret from Foursquare.
 
